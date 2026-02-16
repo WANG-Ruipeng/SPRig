@@ -2,30 +2,28 @@
 title: "SPRig: Self-Supervised Pose-Invariant Rigging from Mesh Sequences"
 authors:
   - name: Ruipeng Wang
-    url: https://www.wangruipeng.com
+    url: https://www.wangruipeng.com/  # 你的个人主页，如果需要更改请自行替换
     institution: University of Pennsylvania
-    notes: ["*", †]
-  - name: Author Two
-    institution: Institution Two
-    notes: ["*", †]
-  - name: Author Three
-    institution: Institution Three
     notes: ["*"]
+  - name: Langkun Zhong
+    institution: The University of Hong Kong
+    notes: ["*"]
+  - name: Miaowei Wang
+    institution: The University of Edinburgh
+    notes: []
 conference: arXiv 2026
 notes:
   - symbol: "*"
-    text: author note one
-  - symbol: †
-    text: author note two
+    text: Equal contribution
 links:
   - name: Paper
-    url: https://github.com/RomanHauksson/academic-project-astro-template
+    url: https://arxiv.org/pdf/2602.12740
     icon: ri:file-pdf-2-line
   - name: Code
-    url: https://github.com/RomanHauksson/academic-project-astro-template
+    url: https://github.com/WANG-Ruipeng/SPRig
     icon: ri:github-line
   - name: arXiv
-    url: https://github.com/RomanHauksson/academic-project-astro-template
+    url: https://arxiv.org/abs/2602.12740
     icon: academicons:arxiv
 
 # The color theme of the page. Defaults to "device" (the preference set in the user's brower or operating system). Setting this to "light" or "dark" will override the user's preference. This is useful if your figures only look good in one theme.
@@ -38,101 +36,119 @@ favicon: favicon.svg
 description: Simple project page template for your research paper, built with Astro and Tailwind
 thumbnail: screenshot-light.png
 ---
-
-import Video from "./components/Video.astro";
 import HighlightedSection from "./components/HighlightedSection.astro";
 import SmallCaps from "./components/SmallCaps.astro";
 import Figure from "./components/Figure.astro";
 import Picture from "./components/Picture.astro";
-import ModelViewer from "./components/ModelViewer.astro"
 import TwoColumns from "./components/TwoColumns.astro";
 import YouTubeVideo from "./components/YouTubeVideo.astro";
 import { Comparison } from "./components/Comparison.tsx";
 
-import outside from "./assets/outside.mp4";
-import transformer from "./assets/transformer.webp";
-import dogsDiffc from "./assets/dogs-diffc.png"
-import dogsTrue from "./assets/dogs-true.png"
-
-<Video src={outside} />
+{/* Teaser Figure */}
+<Figure>
+  <Picture slot="figure" src="../assets/HeaderImage.pdf" alt="Comparison of our method vs Puppeteer" />
+  <Fragment slot="caption">
+    **Figure 1. Comparison of our method vs Puppeteer.** Our method (top, blue) yields a complete, temporally consistent skeleton with smooth, coherent skinning weights, whereas Puppeteer (bottom, red) produces an incomplete skeleton with missing hand rigging and unstable, blocky skinning.
+  </Fragment>
+</Figure>
 
 <HighlightedSection>
 
+## TL;DR
+
+Since an animated sequence represents the same underlying object, we enforce a consistency prior to fine-tune existing rigging models, enabling them to learn robust, pose-invariant rigs from abundant unlabeled data.
+
 ## Abstract
 
-This is a live demo for a template you can use to create a simple project page for your research paper. See the code for the template and instructions on how to use it yourself [here](https://github.com/RomanHauksson/academic-project-astro-template). It's made with the [Astro web framework](https://astro.build/) and styled with [Tailwind](https://tailwindcss.com/). You write the content in [MDX](https://mdxjs.com/), which enables markdown formatting like **bold**, _italics_, and ~strikethrough~, as well as custom components like <SmallCaps>small caps.</SmallCaps>
+State-of-the-art rigging methods assume a canonical rest pose—an assumption that fails for sequential data (e.g., animal motion capture or AIGC/video-derived mesh sequences) that lack the T-pose. Applied frame-by-frame, these methods are not pose-invariant and produce topological inconsistencies across frames.
+
+Thus we propose <SmallCaps>SPRig</SmallCaps>, a general fine-tuning framework that enforces cross-frame consistency losses to learn pose-invariant rigs on top of existing models. We validate our approach on rigging using a new permutation-invariant stability protocol. Experiments demonstrate SOTA temporal stability: our method produces coherent rigs from challenging sequences and dramatically reduces the artifacts that plague baseline methods.
 
 </HighlightedSection>
 
-## Figures
+## Method Overview
 
-Use the figure component to display images, videos, equations, or any other element, with an optional caption.
-
-<Figure>
-  <Picture slot="figure" src={transformer} alt="Diagram of the transformer deep learning architecture." invertInDarkMode />
-  <Fragment slot="caption">Diagram of the transformer deep learning architecture.</Fragment>
-</Figure>
-
-If you stored your figures as PDFs, the `Picture` component can convert them into web-friendly images automatically.
+Our key insight builds on a fundamental assumption in computer graphics: an animated sequence represents a single object, which should therefore have a single, pose-invariant rig. We operationalize it as a self-supervised signal: a canonical rig derived from an anchor frame serves as a target to fine-tune the pre-trained model.
 
 <Figure>
-  <Picture slot="figure" src="../assets/allstate-sparsity.pdf" alt="Impact of the sparsity-aware algorithm in XGBoost on the Allstate-10K dataset." invertInDarkMode />
-  <Fragment slot="caption">Impact of the sparsity-aware algorithm in [XGBoost](https://arxiv.org/abs/1603.02754) on the Allstate-10K dataset.</Fragment>
+  <Picture slot="figure" src="../assets/SkeletonMethod.pdf" alt="Skeleton generation overview" />
+  <Fragment slot="caption">
+    **Figure 2. Skeleton generation overview.** Point clouds sampled from mesh sequences are fed to a Transformer-based skeleton generator. [cite_start]An anchor skeleton from the original generator defines a canonical target; token-space and geometry-space consistency losses fine-tune the model so that decoded tokens yield temporally consistent skeletons. [cite: 138-140]
+  </Fragment>
 </Figure>
-
-Use the `Comparison` component to compare two elements with an interactive slider. It should work for any component or HTML element, including images, videos, and 3D models.
 
 <Figure>
-  <Comparison slot="figure" client:idle >
-    <Picture slot="itemOne" src={dogsDiffc} alt="Photo of two dogs running side-by-side in shallow water, lossily compressed using the DiffC algorithm" />
-    <Picture slot="itemTwo" src={dogsTrue} alt="Original photo of two dogs running side-by-side in shallow water" />
-  </Comparison>
-  <Fragment slot="caption">A photo of two dogs running side-by-side in shallow water, lossily compressed using the [DiffC algorithm](https://jeremyiv.github.io/diffc-project-page/).</Fragment>
+  <Picture slot="figure" src="../assets/SkinningMethod.pdf" alt="Skinning generation pipeline overview" />
+  <Fragment slot="caption">
+    **Figure 3. Skinning generation pipeline overview.** A high-quality anchor teacher is first generated using a pretrained generator on the anchor frame. A skinning generator is then fine-tuned: its predictions on all query points are compared against the single anchor teacher using our articulation-invariant consistency loss, forcing the model to learn a pose-invariant mapping and produce temporally consistent skinning.
+  </Fragment>
 </Figure>
 
-## Two columns
+## Experimental Results
 
-Use the two columns component to display two columns of content. In this example, the first column contains a figure with a YouTube video and the second column contains a figure with a custom [React](https://react.dev/) component. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
+We evaluate <SmallCaps>SPRig</SmallCaps> on challenging animated sequences from the DeformingThings4D dataset, demonstrating superior temporal stability compared to the state-of-the-art baseline (Puppeteer).
 
-<TwoColumns>
-  <Figure slot="left">
-    <YouTubeVideo slot="figure" videoId="wjZofJX0v4M" />
-    <Fragment slot="caption">Take a look at this YouTube video.</Fragment>
-  </Figure>
-  <Figure slot="right">
-    <ModelViewer slot="figure" src="/BoxVertexColors.glb" alt="A cube colored with a rainbow gradient" />
-    <Fragment slot="caption">Now look at this cube, rendered with the `<model-viewer>` web component.</Fragment>
-  </Figure>
-</TwoColumns>
+### Skeleton Generation Consistency
 
-## LaTeX
+Our method produces complete and topologically consistent skeletons across frames, whereas the baseline often suffers from flickering topology and missing joints.
 
-You can also add LaTeX formulas, rendered during the build process using [KaTeX](https://katex.org/) so they're quick to load for visitors of your project page. You can write them inline, like this: $a^2 + b^2 = c^2$. Or, you can write them as a block:
+<Figure>
+  <Picture slot="figure" src="../assets/SkeletonQualatative.pdf" alt="Qualitative comparison of skeleton predictions" />
+  <Fragment slot="caption">
+    **Figure 4. Qualitative comparison of skeleton predictions.** Our method produces temporally stable and complete skeletons.
+  </Fragment>
+</Figure>
 
-$$
-\int_a^b f(x) dx
-$$
+### Skinning Temporal Stability
 
-## Tables
+We visualize the temporal inconsistency error. Our method effectively suppresses the "flickering" artifacts seen in baseline methods.
 
-Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables):
+<Figure>
+  <Picture slot="figure" src="../assets/SkinQualL1.pdf" alt="L1 Error Heatmap of temporal consistency" />
+  <Fragment slot="caption">
+    **Figure 5. L1 Error Heatmap of temporal consistency.** We visualize the per-vertex L1 error between the prediction on a perturbed frame and the static anchor teacher. Blue indicates zero error; red indicates high error. The baseline (left) shows large high-error regions on limbs, while our method (right) almost completely eliminates this inconsistency.
+  </Fragment>
+</Figure>
 
-| Model | Accuracy | F1 score | Training time (hours) |
+### Skinning Generation Quality
+
+Our method ensures that skinning weights (visualized by color) remain consistent on the same body parts throughout the motion sequence.
+
+<Figure>
+  <Picture slot="figure" src="../assets/SkinningQulatative.pdf" alt="Qualitative comparison of skinning generation" />
+  <Fragment slot="caption">
+    **Figure 6. Qualitative comparison of skinning generation.** The visualization colors each point based on the joint with maximum influence. Ours (top) produces consistent skinning assignments for arms and legs across all frames. In contrast, the baseline (bottom) exhibits significant instability, with joint assignments flickering between frames (e.g., arm changing colors).
+  </Fragment>
+</Figure>
+
+### Quantitative Analysis
+
+Our method achieves state-of-the-art temporal stability while maintaining or improving static generation quality.
+
+**Table 1. Temporal Stability & Static Quality (Skeleton).** Our method reduces geometric jitter (PJDD) by over 25×.
+
+| Model | PJDD (↓) | BLRD (↓) | GSD (↓) | JAD | MPJPE@Anchor |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Puppeteer | 17.46 | 34.37 | 0.062 | 0.343 | 0.592 |
+| **Ours** | **0.68** | **17.74** | **0.056** | 0.380 | 0.731 |
+
+**Table 2. Temporal Consistency (Skinning).** We achieve a 30.3% reduction in L1 error and a 51.3% reduction in SymKL divergence.
+
+| Method | L1 (B,C→A) ↓ | SymKL (B,C↔A) ↓ | Entropy ↓ |
 | :--- | :---: | :---: | :---: |
-| BERT-base | 0.89 | 0.87 | 4.5 |
-| RoBERTa-large | 0.92 | 0.91 | 7.2 |
-| DistilBERT | 0.86 | 0.84 | 2.1 |
-| XLNet | 0.90 | 0.89 | 6.8 |
+| Puppeteer | 1328.80 | 2226.63 | 1368.45 |
+| **Ours** | **925.77** | **1084.71** | 1396.95 |
+| *Improvement* | *30.3%* | *51.3%* | - |
 
 ## BibTeX citation
 
-Displaying your BibTeX citation in a code block makes it easy to copy and paste.
-
 ```bibtex
-@misc{roman2024academic,
-  author = "{Roman Hauksson}",
-  title = "Academic Project Page Template",
-  year = "2024",
-  howpublished = "\url{https://research-template.roman.technology}",
+@misc{wang2026sprigselfsupervisedposeinvariantrigging,
+      title={SPRig: Self-Supervised Pose-Invariant Rigging from Mesh Sequences}, 
+      author={Ruipeng Wang and Langkun Zhong and Miaowei Wang},
+      year={2026},
+      eprint={2602.12740},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2602.12740}, 
 }
-```
