@@ -22,7 +22,7 @@
   <img src="docs/src/assets/Teaser.png" alt="Teaser Image" width="100%">
 </div>
 
-**Figure 1.** Comparison of our method vs Puppeteer. Our method (top, blue) yields a complete, temporally consistent skeleton with smooth, coherent skinning weights, whereas Puppeteer (bottom, red) produces an incomplete skeleton with missing hand rigging and unstable, blocky skinning.
+Comparison of our method vs Puppeteer. Our method (top, blue) yields a complete, temporally consistent skeleton with smooth, coherent skinning weights, whereas Puppeteer (bottom, red) produces an incomplete skeleton with missing hand rigging and unstable, blocky skinning.
 
 ---
 
