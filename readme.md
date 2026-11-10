@@ -26,38 +26,72 @@ Comparison of our method vs Puppeteer. Our method (top, blue) yields a complete,
 
 ---
 
-## 🚧 Code Release
+## Code
 
-This repository is currently under construction. We are organizing the clean version of the training and inference code into the `src/` directory.
+The implementation is available in [`src/`](src/).
 
-Currently, the repository structure is:
-- **`doc/`**: Contains the source code for the [Project Page](https://wangruipeng.com/SPRig).
-- **`src/`**: (Coming Soon) Will contain the official implementation.
+| Directory | Contents |
+| :--- | :--- |
+| [`src/skeleton/`](src/skeleton/) | Skeleton prediction and fine-tuning |
+| [`src/skinning/`](src/skinning/) | Skinning prediction and fine-tuning |
+| [`src/tools/`](src/tools/) | Inference and supporting utilities |
+| [`docs/`](docs/) | Project website |
 
-### 🧪 Experimental Code (Colab & Drive)
+## Pretrained Models
 
-While we clean up the code, you can access our **experimental notebooks and checkpoints** via the links below. These notebooks were used to run the experiments in the paper on **NVIDIA A100** GPUs.
+The checkpoints used in the paper, fine-tuned on DeformingThings4D, are available on [Hugging Face](https://huggingface.co/wrp/SPRig).
 
-| Resource | Description | Link |
+| Stage | Model version | Checkpoint |
 | :--- | :--- | :--- |
-| **Google Colab** | Training & Inference Notebooks | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/17BjJ9x97DytsCQ9mxHbmd1nAoOBgQqoL?usp=sharing) |
-| **Google Drive** | All Checkpoints & Sample Data | [📂 Open Drive Folder](https://drive.google.com/drive/folders/1x5OpG6EGsQSKDb_2-ZRnmkb7sIl7xNHO?usp=sharing) |
+| Skeleton | `DeformingThings4D_finetune_v2` | [`sprig_dt4d_skeleton.pth`](https://huggingface.co/wrp/SPRig/blob/main/sprig_dt4d_skeleton.pth) |
+| Skinning | `finetuned_model_v3` | [`sprig_dt4d_skinning.pth`](https://huggingface.co/wrp/SPRig/blob/main/sprig_dt4d_skinning.pth) |
 
-> **Note:** The code in the Colab notebooks is raw and experimental. We are working on merging it into this repository.
+Our pretrained weights can be used in the original [Puppeteer repository](https://github.com/Seed3D/Puppeteer) in place of its skeleton and skinning checkpoints. Set `--pretrained_weights` to the corresponding file above, with the model settings and loading adjustment below.
 
----
+<details>
+<summary>Using the checkpoints in Puppeteer</summary>
 
-## 📝 Citation
+- **Skeleton v2:** use `--joint_token` and remove `--seq_shuffle` from Puppeteer's `demo_rigging.sh`. Keep the default OPT-350m model, 128 coordinate bins, and `--n_max_bones 100`.
+- **Skinning v3:** use `--depth 1`. This checkpoint already uses Puppeteer's `{"model": ...}` format and works with its existing checkpoint loader.
+
+The skeleton checkpoint is saved as a raw state dictionary. In Puppeteer's `skeleton/demo.py`, replace `model.load_state_dict(pkg["model"])` with:
+
+```python
+model.load_state_dict(pkg.get("model", pkg), strict=True)
+```
+
+</details>
+
+## Online Demo
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1H8IQ2ZjXdOeMpo6Sdf73bxXkz0EZyfEz)
+
+The standalone Colab notebook is maintained separately in Google Drive. It downloads a fixed revision of the source code from this repository and the pretrained weights from Hugging Face.
+
+1. Open the notebook and select **Runtime → Change runtime type → A100**.
+2. Choose **Runtime → Run all**. The notebook automatically downloads the official Puppeteer deer example and runs skeleton and skinning prediction.
+3. Inspect the interactive skeleton and skinning-weight previews, then download the results as a ZIP file.
+
+The demo has been run successfully on an **NVIDIA A100 (40 GB)**. The first run includes environment setup and model downloads.
+
+Results include the exported mesh, predicted skeleton, and per-vertex skinning weights. The skinning weights follow the vertex order of the exported mesh. The demo produces a rig in its rest pose.
+
+## Data
+
+The datasets used in the paper are **not redistributed**. Please obtain them from their original providers and follow the corresponding terms of use.
+
+## Citation
 
 If you find our work useful for your research, please consider citing:
 
 ```bibtex
 @misc{wang2026sprig,
-      title={SPRig: Self-Supervised Pose-Invariant Rigging from Mesh Sequences}, 
-      author={Ruipeng Wang and Langkun Zhong and Miaowei Wang},
-      year={2026},
-      eprint={2602.12740},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={[https://arxiv.org/abs/2602.12740](https://arxiv.org/abs/2602.12740)}, 
+  title={SPRig: Self-Supervised Pose-Invariant Rigging from Mesh Sequences},
+  author={Ruipeng Wang and Langkun Zhong and Miaowei Wang},
+  year={2026},
+  eprint={2602.12740},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2602.12740}
 }
+```
