@@ -1,0 +1,366 @@
+{
+  "version": 3,
+  "status": "colab_candidate_not_gpu_validated",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 350,
+      "sha256": "4846b219e74812e1551dac51361310163d969fb0e8d0112840d5d7cca9224130"
+    },
+    {
+      "path": "LICENSE_PUPPETEER.txt",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6358,
+      "sha256": "25c578897538d4f439f5a072a9245f292a4e2f19183bb471bdcabc518ba60772"
+    },
+    {
+      "path": "SOURCE_SELECTION.json",
+      "bytes": 12622,
+      "sha256": "af1bd9dfa1071b99c32c807fa9e930387dcb8e0481fc6cb22a8a0d372f5f38fb"
+    },
+    {
+      "path": "colab/check_runtime.py",
+      "bytes": 992,
+      "sha256": "bf97fec4832e53440ccc4d04970e2a0a528035187dbbbb65a046f8e7926c43e1"
+    },
+    {
+      "path": "colab/fetch_demo_mesh.py",
+      "bytes": 1878,
+      "sha256": "94fb6d6258f3ffdc4f337f96824f7ce27fd8260aa2c332c2c784b6baa8c2ae7d"
+    },
+    {
+      "path": "colab/prepare_weights.py",
+      "bytes": 3067,
+      "sha256": "1b750d237f5b27852eb5aec6bdbed9441a8d12568d5c513f108c77aa0fe4660d"
+    },
+    {
+      "path": "colab/requirements-colab.txt",
+      "bytes": 715,
+      "sha256": "e628f061f5e83cdeef746e09528c2744508d6c36894edb5b18b32942739ce79b"
+    },
+    {
+      "path": "colab/runtime-lock.json",
+      "bytes": 2354,
+      "sha256": "77497983d9ab106007a2759eb0f3201db68979144009d66ce53066be859a9cfc"
+    },
+    {
+      "path": "colab/setup_runtime.py",
+      "bytes": 3329,
+      "sha256": "400287b2325e96d312b7e5de05bd8d7382b737e4d4e2827eba705be8378335f6"
+    },
+    {
+      "path": "docs/DATA_POLICY.md",
+      "bytes": 2237,
+      "sha256": "589c3900b3c715957edeabef070cb41ef07b288a15927b1dc56c8b40d3001ca1"
+    },
+    {
+      "path": "docs/LICENSING_STATUS.md",
+      "bytes": 1198,
+      "sha256": "f801dfb0f233361d94924c642a18c99f67e1b77ca26b027e3c17f37a5f5b4eb3"
+    },
+    {
+      "path": "docs/REPRODUCIBILITY_STATUS.md",
+      "bytes": 1308,
+      "sha256": "284ddc38b963a9f05e913c351daf9973a0e89df6b7008de0031d95f9c50c1de8"
+    },
+    {
+      "path": "docs/VERIFICATION.md",
+      "bytes": 3820,
+      "sha256": "128cbc4c539693c5d13be104f7e9ae433932f2292051186ed732690744f75c00"
+    },
+    {
+      "path": "requirements-sprig.txt",
+      "bytes": 76,
+      "sha256": "a9d4206179214607fd7a3c4541b839af5f079956ec12298df59e84c55516be92"
+    },
+    {
+      "path": "requirements-upstream.txt",
+      "bytes": 361,
+      "sha256": "ba4503c4675d4c306f6fb14ffffafd94ee0cb7545b48e6342be9ea1c9ab1819b"
+    },
+    {
+      "path": "skeleton/anchor_discovery.py",
+      "bytes": 4802,
+      "sha256": "2bb78acf40cc8789c6181e51c8272072df0479f9bb32ddacaac5fc14f33a9033"
+    },
+    {
+      "path": "skeleton/animation_dataset.py",
+      "bytes": 3806,
+      "sha256": "6429af057350c49a4cf7ae0345835db159349a2d2eaeca1605037c853b718619"
+    },
+    {
+      "path": "skeleton/build_finetune_dataset.py",
+      "bytes": 14690,
+      "sha256": "1cd9051f10234bdc6ba3fba9a81e46d82640d64e5cb73f1283e7b16f654b48fd"
+    },
+    {
+      "path": "skeleton/data_utils/convert_npz_to_mesh_rig.py",
+      "bytes": 4187,
+      "sha256": "6af0711b92041e6af2713b4e156c37c0ffa9c9255dea3c217adf1990d59bf600"
+    },
+    {
+      "path": "skeleton/data_utils/data_loader.py",
+      "bytes": 4680,
+      "sha256": "52f8c3717e37415ae03400be4325001de676d71a813de1261477fa0c11de8950"
+    },
+    {
+      "path": "skeleton/data_utils/pyrender_wrapper.py",
+      "bytes": 4853,
+      "sha256": "21f5c1fc74b93a1af75869a4e205dd1aa639c1be8419ac7447d7eaf85fc8acc1"
+    },
+    {
+      "path": "skeleton/data_utils/read_npz.py",
+      "bytes": 1761,
+      "sha256": "d9bf6b8f50fd18792927035e90e84206c77e05ec7e2e640b66416733fe281e08"
+    },
+    {
+      "path": "skeleton/data_utils/read_rig_mesh_from_glb.py",
+      "bytes": 6713,
+      "sha256": "1d47248930a8007afac7fdf73785dfbd63215647e5b5835ee37765747e479db7"
+    },
+    {
+      "path": "skeleton/data_utils/render_data.py",
+      "bytes": 2008,
+      "sha256": "7a8e758749e6d378cf96351a308a78e3b18cad454cdb320eb854361403c621a4"
+    },
+    {
+      "path": "skeleton/data_utils/save_npz.py",
+      "bytes": 9052,
+      "sha256": "9bbf15d00354ae2a324bce1be61abc34566bd3676b51a8b65e27b2cb3460ce09"
+    },
+    {
+      "path": "skeleton/demo.py",
+      "bytes": 11044,
+      "sha256": "a162f292c1324f5dbcabd41049a399ba044efb3370364881fff18b1e4af27722"
+    },
+    {
+      "path": "skeleton/eval_pjdd_gsd_npz.py",
+      "bytes": 19992,
+      "sha256": "1451f4e7baeb8aab3e83db0602934bee20ddc8db21c25b9a08d59abb645293f6"
+    },
+    {
+      "path": "skeleton/infer_release.py",
+      "bytes": 3462,
+      "sha256": "9be8663e2a0adeee8bdceb403cfe10d264140082cf9e07da71bd925fc5f10c4f"
+    },
+    {
+      "path": "skeleton/skeleton_gpt_finetune.py",
+      "bytes": 26515,
+      "sha256": "d77209da8e9bdb5be1f626d731aad14d7375c14e1e4ccf0f5d0926cb6ab10aae"
+    },
+    {
+      "path": "skeleton/skeleton_models/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "skeleton/skeleton_models/skeleton_opt.py",
+      "bytes": 21965,
+      "sha256": "12929fcfd17c5864ed4e675b5cc15dc887735804a28a7b15d72f081373a53ef6"
+    },
+    {
+      "path": "skeleton/skeleton_models/skeleton_opt_finetune.py",
+      "bytes": 22529,
+      "sha256": "56334419d4f989ef0ecd35d5e9c0c62161b382cfb3cc5c6b1b8b9ac877d910d2"
+    },
+    {
+      "path": "skeleton/skeleton_models/skeletongen.py",
+      "bytes": 12659,
+      "sha256": "9d6428c47d0aa816afc8fed240c4de4be3d691a2d9cdf6ed2e4d89313c0b74ed"
+    },
+    {
+      "path": "skeleton/train_finetune.py",
+      "bytes": 11610,
+      "sha256": "562e2cd3b6ada9cc77c1cb81b6f86e4caaf415496633fbb908933b120af084ab"
+    },
+    {
+      "path": "skeleton/utils/eval_utils.py",
+      "bytes": 2674,
+      "sha256": "5b0d481b8a418979ce1d9af1b7642ef67084a61d1d05f1690a20ef3a13b0f1c0"
+    },
+    {
+      "path": "skeleton/utils/mesh_to_pc.py",
+      "bytes": 3370,
+      "sha256": "0f42d77021a2b384b1a4dbfebb43b7e8d04f42c9b8c149a2bbc11c06ecffe140"
+    },
+    {
+      "path": "skeleton/utils/save_utils.py",
+      "bytes": 17829,
+      "sha256": "8894fe1f78338ab856f7e5317c33695f1b04c80c6154111fcda9cbce423e062a"
+    },
+    {
+      "path": "skeleton/utils/skeleton_data_loader.py",
+      "bytes": 3686,
+      "sha256": "f2e5216d3d6acbff9453133f6f11ee72488858918c226be7a286b68009719aa1"
+    },
+    {
+      "path": "skinning/anchor_discovery.py",
+      "bytes": 4802,
+      "sha256": "2bb78acf40cc8789c6181e51c8272072df0479f9bb32ddacaac5fc14f33a9033"
+    },
+    {
+      "path": "skinning/build_triplet_npz.py",
+      "bytes": 9891,
+      "sha256": "45e21e03640d2d94898a6f7de5b6fae081e7114c3ff403e40b77a9d3eb606bd0"
+    },
+    {
+      "path": "skinning/bulk_generate_teachers.py",
+      "bytes": 6433,
+      "sha256": "054437a4a59f9edb938efc64f3082b2b1a8dc2d08e032a3a75a4a6f91b279e0f"
+    },
+    {
+      "path": "skinning/eval_finetune_skin.py",
+      "bytes": 5702,
+      "sha256": "92234af0232671c15da684dd5c7639c969e355a517e3e33f444c4c5e14682403"
+    },
+    {
+      "path": "skinning/eval_rig_transfer.py",
+      "bytes": 11154,
+      "sha256": "53db3eb5810323cb603d5914ceb5db67770918dd4c2de1502f2abe19a2b9380f"
+    },
+    {
+      "path": "skinning/infer_release.py",
+      "bytes": 1694,
+      "sha256": "2a6548ef19bf72d07c8f5abc3f57c39c338c60947682d03b83a31fcecd24e46f"
+    },
+    {
+      "path": "skinning/main.py",
+      "bytes": 15709,
+      "sha256": "213e09cec05432a3570aef4f837a28c8e83b25e10df46864f76df5a415ab95fd"
+    },
+    {
+      "path": "skinning/skin_finetune_data.py",
+      "bytes": 8161,
+      "sha256": "a8c4cc9c96a40c091d41f6ce8f809f420ba726482eca6da1e6c2bbee6566ca96"
+    },
+    {
+      "path": "skinning/skinning_models/models.py",
+      "bytes": 8070,
+      "sha256": "7921547814b5a9e04434c354621fa58c0e60a5c30dafd477d8e876581141c527"
+    },
+    {
+      "path": "skinning/skinning_models/networks.py",
+      "bytes": 5288,
+      "sha256": "61ebdc816b4973921cbbd132a3061afca68ae2f95170d3b056611c0837595a76"
+    },
+    {
+      "path": "skinning/train_finetune_skin.py",
+      "bytes": 19003,
+      "sha256": "c0e615b66bb0bec5638a54a7f38def9fffa978d4c720971f3530916b52a1cf1b"
+    },
+    {
+      "path": "skinning/utils/misc.py",
+      "bytes": 11773,
+      "sha256": "c90050dd620bfdc11bfc203bf55cd21b0ed55e584686f0b23f82b782de9ed9b8"
+    },
+    {
+      "path": "skinning/utils/rig_parser.py",
+      "bytes": 5156,
+      "sha256": "9ba27f99da65115148b605bc77617a0e3e079281878e18a8f786eae2a878ab66"
+    },
+    {
+      "path": "skinning/utils/save_h5.py",
+      "bytes": 6195,
+      "sha256": "244e15cf453269843adc8a7697d55648b1bb73a129ff08ffcc0ee2bf2f44b533"
+    },
+    {
+      "path": "skinning/utils/skin_data.py",
+      "bytes": 9494,
+      "sha256": "eacd90df620e22bcd05ec7cc9a3a1be4553b7cd6c6bfa65df11bd9bdf94108d2"
+    },
+    {
+      "path": "skinning/utils/util.py",
+      "bytes": 9572,
+      "sha256": "6c8aede6b679bde19dd1e42e5663e0991a2269da4d42ced98d2f726602618415"
+    },
+    {
+      "path": "sprig_eval_mvp/__init__.py",
+      "bytes": 180,
+      "sha256": "a0ec855529ac993c648664433400a44ad1f5cad37cd39a7b30a115f926135239"
+    },
+    {
+      "path": "sprig_eval_mvp/anchor_discovery.py",
+      "bytes": 4079,
+      "sha256": "798c7006653c2ff153e8a0e4f60b6a26900173de124c79d065bf8b259a480fe5"
+    },
+    {
+      "path": "sprig_eval_mvp/eval_lbs_sequence.py",
+      "bytes": 3541,
+      "sha256": "960d11d6cbeef7a522185485dbe54df586606ebccbe797d83e56e60172bebe6e"
+    },
+    {
+      "path": "sprig_eval_mvp/geometry.py",
+      "bytes": 3398,
+      "sha256": "346856d5221925d2b74a5e9245483f10dc625d38eb50f8da36629de07e5e5c3a"
+    },
+    {
+      "path": "sprig_eval_mvp/io.py",
+      "bytes": 6843,
+      "sha256": "17076a1e5f9b4a36a60dd2c7756c4774fd1e61ae0211b5c30df8ef0053564ca9"
+    },
+    {
+      "path": "sprig_eval_mvp/metrics.py",
+      "bytes": 4079,
+      "sha256": "41c6e7ae4ecd3b01970be6c9e9230a283b67a613fb62f15b22b1f2746ccc3a95"
+    },
+    {
+      "path": "sprig_eval_mvp/pose_fitting.py",
+      "bytes": 11136,
+      "sha256": "5ea5e85b00f59d7c4fc8a89b5e8beb51a1dadb431d964bb6bfc58b22f7434061"
+    },
+    {
+      "path": "tools/build_source_release.py",
+      "bytes": 2149,
+      "sha256": "b4f78f6d7ea5caafca39313135e818b8e18da3cb7e1840caa6b55d7afd876f51"
+    },
+    {
+      "path": "tools/check_colab_gpu.py",
+      "bytes": 3056,
+      "sha256": "b01ef5a6df33a531e1d87538ef67e88324b75a41349046648d87e6a7ade4606e"
+    },
+    {
+      "path": "tools/check_file_integrity.py",
+      "bytes": 661,
+      "sha256": "b9a6240f934db7bada0dd058c4d2cf202bcf1249d99b69a91813d1d4159241bf"
+    },
+    {
+      "path": "tools/checkpoint_io.py",
+      "bytes": 786,
+      "sha256": "277f5436866dd1f5e52e7e273577bafd5e97e8579413fa4b1c53b1744ecd8a4d"
+    },
+    {
+      "path": "tools/demo_io.py",
+      "bytes": 2725,
+      "sha256": "2c0685b446ab53917f8fadfb84881c7913141eee8ae5ad6fce0afa9fdfca5d6e"
+    },
+    {
+      "path": "tools/export_weights.py",
+      "bytes": 4968,
+      "sha256": "132a8ccc1bc3de43f928620d775ec272582858ea026f38706ae3cc2f92a7950c"
+    },
+    {
+      "path": "tools/run_demo.py",
+      "bytes": 3556,
+      "sha256": "1f0fe1d5bab2e83e2fc0d7821a4de596cdf1b968af117f7ac4004f3cc3978471"
+    },
+    {
+      "path": "tools/smoke_export_weights.py",
+      "bytes": 981,
+      "sha256": "8a4effce83a64d72dde6c3fe3b609494f3e3bc37667743ec2e1cf98ec21b6bbf"
+    },
+    {
+      "path": "tools/validate_splits.py",
+      "bytes": 1928,
+      "sha256": "e47ea348468a5a6aafbea66f4e3fcf34ee6af6a92d8c007654f620b8511d6d19"
+    },
+    {
+      "path": "tools/video_motion_metrics.py",
+      "bytes": 8164,
+      "sha256": "9668524ef997bc67d4967872b44431f6ca717555c20a8c8449131a018cbd50b9"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "status": "prepared_not_gpu_validated",
+  "python": "3.10.13",
+  "torch": "2.1.1+cu118",
+  "puppeteer_reference": "1c0f9fc6ad209667a0ec5ceac9b59964938a8b51",
+  "note": "Pins selected during release preparation, not recovered historical training revisions.",
+  "code": [
+    {
+      "path": "skeleton/third_partys/Michelangelo",
+      "url": "https://github.com/ChaoyueSong/Michelangelo",
+      "commit": "c88949f294fffccf40b191357ce669cae8694fd9"
+    },
+    {
+      "path": "skinning/third_partys/PartField",
+      "url": "https://github.com/ChaoyueSong/PartField",
+      "commit": "9bdf4770bef0163e277ee8fd85644642ab6f6b2b"
+    }
+  ],
+  "encoder_weights": [
+    {
+      "repo": "Maikou/Michelangelo",
+      "revision": "8a69a699a63f6876b2948b2d771f136bb7d5c066",
+      "file": "checkpoints/aligned_shape_latents/shapevae-256.ckpt",
+      "local_dir": "skeleton/third_partys/Michelangelo"
+    },
+    {
+      "repo": "mikaelaangel/partfield-ckpt",
+      "revision": "90b9b1e08b6a12fdcb6ee26b4854a26235e1765f",
+      "file": "model_objaverse.ckpt",
+      "local_dir": "skinning/third_partys/PartField/ckpt"
+    }
+  ],
+  "llm_config": {
+    "repo": "facebook/opt-350m",
+    "revision": "08ab08cc4b72ff5593870b5d527cf4230323703c",
+    "file": "config.json",
+    "local_dir": "colab/opt-config"
+  },
+  "paper_weights": {
+    "owner_confirmed": true,
+    "skeleton": {
+      "training_run": "DeformingThings4D_finetune_v2",
+      "filename": "sprig_dt4d_skeleton.pth",
+      "size_bytes": 1960127802,
+      "sha256": "6f5f7a47e63c023169385c8a6c520a52bbe8e08531c74df9c8e8b8e1e0c8117e"
+    },
+    "skinning": {
+      "training_run": "finetuned_model_v3",
+      "filename": "sprig_dt4d_skinning.pth",
+      "size_bytes": 1346237570,
+      "sha256": "d3c3a91e538421f52c56f3571bb4c03474ee32a10859a09f25207fbc11e0dc8a"
+    },
+    "hf_repo_id": "wrp/SPRig",
+    "hf_revision": "e568ae8039dbd461cf7b0cdcc3220268bb0ec4d4",
+    "end_to_end_verified": false
+  },
+  "demo": {
+    "name": "Puppeteer deer",
+    "repository": "Seed3D/Puppeteer",
+    "revision": "1c0f9fc6ad209667a0ec5ceac9b59964938a8b51",
+    "path": "examples/deer.obj",
+    "url": "https://raw.githubusercontent.com/Seed3D/Puppeteer/1c0f9fc6ad209667a0ec5ceac9b59964938a8b51/examples/deer.obj",
+    "size": 262104,
+    "sha256": "0e7d8b75751aeead9ad217072d24323c127350567f9aa6bc86a5f5234feeec9c"
+  }
+}
